@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MyBookie</title>
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
+        
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div id="grid-item">
+            <img id="logo" src="{% static 'books/assets/images/bookie_logo.png' %}" alt="MyBookie Logo">
+        </div>
+         <div class="navbar-inline">
+            <ul class="nav">
+                <li><a href="">More Bookie</a></li>
+                <li><a href="">Mybookie</a></li>
+                <li><a href="">About</a></li>
+                <li id="nav-btn"><form action="{% url 'logout'%}" method="post">
+                    {% csrf_token %}
+                    <button type="submit"> Logout :(</button>
+                    </form></li>
+                </ul>
+            </div>
+        </nav>
+
+    <!-- LOGIN PAGE -->
+
+    <main class="auth-page">
+
+        <div class="auth-image">
+            <img src="{% static 'books/assets/images/login-cat.png' %}">
+         </div>
+
+        <div class="auth-form">
+            <h2> Pls tell me your... </h2>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <label>Username:</label>
+                {{ form.username }}
+
+                <label>Password:</label>
+                {{ form.password }}
+
+                <button type="submit">
+                    Login
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+</body>
+</html>

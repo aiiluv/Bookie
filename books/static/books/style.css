@@ -1,0 +1,878 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Comic Relief", sans-serif;
+}
+
+body {
+    font-family: "Comic Relief", sans-serif;
+    margin: 0px 300px;
+}
+
+h1, h2, h3 {
+    font-family: "Comic Relief", sans-serif;
+}
+
+/* Navbar */
+
+nav {
+    width: 100%;
+    height: 70px;
+
+    background: #f58bb2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+}
+
+#logo {
+    width: 70%;
+    height: auto;
+    justify-items: center;
+    display: block;
+}
+
+/* navigation */
+
+.navbar-inline {
+    display: flex;
+    align-items: center;
+}
+
+.nav {
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* nav link */
+
+.nav li {
+    margin: 0;
+    padding: 0;
+}
+
+.nav li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+/* btn logout */
+
+#nav-btn button {
+    border: none;
+    
+    font-size: 18px;
+    background: #d95789;
+    color: white;
+
+    padding: 7px 20px;
+
+    border-radius: 20px;
+
+    font-family: "Comic Relief", sans-serif;
+
+    cursor: pointer;
+}
+
+#nav-btn button:hover {
+    opacity: 0.8;
+}
+
+/* MAIN */
+
+.container {
+    min-height: 100vh;
+    margin: auto;
+    background: #fff5dc;
+    padding-bottom: 60px;
+}
+
+/* Halo */
+
+.halo{
+    display: inline-block;
+    margin: 25px 30px 15px;
+    padding: 4px 12px;
+    background: #ffda72;
+    color: #6b8050;
+    font-size: 38px;
+}
+
+/* dashboard */
+
+.dashboard {
+    display: grid;
+
+    /* Statistik lebih besar, Now Playing lebih kecil */
+    grid-template-columns: 2fr 1fr;
+
+    gap: 15px;
+
+    padding: 0 30px;
+
+    align-items: stretch;
+}
+
+.statistic {
+    display: grid;
+
+    /* 3 kolom */
+    grid-template-columns: 1fr 1fr 1fr;
+
+    padding: 20px;
+    min-height: 130px;
+    
+    background-color: #fff;
+    border: 3px solid #6b8050;
+
+    gap: 10px;
+}
+
+.big-card {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+    padding: 10px;
+
+    background-color: #f58bb2;
+
+    min-width: 0;
+    margin-bottom: 50px;
+}
+
+.card {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    gap: 10px;
+    min-width: 0;
+
+    margin-bottom: 50px;
+}
+
+.small-card {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 10px;
+
+    background-color: #f58bb2;
+
+    min-width: 0;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.big-card p,
+.small-card p {
+    margin: 0;
+
+    font-size: 14px;
+}
+
+.big-card strong,
+.small-card strong {
+    font-size: 24px;
+}
+
+
+/* =========================
+   NOW PLAYING
+========================= */
+
+.now-playing {
+    min-height: 130px;
+    padding: 10px;
+    background-color: white;
+
+    border: 3px solid #6b8050;
+}
+
+.now-playing small {
+    display: block;
+
+    background-color: #ffda72;
+
+    padding: 8px;
+}
+
+.music-content {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    height: calc(100% - 35px);
+}
+
+.music-image {
+    font-size: 40px;
+}
+
+.music-content p {
+    margin: 0;
+
+    padding: 8px 20px;
+
+    background-color: #d95789;
+
+    color: white;
+}
+
+.spotify-button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #1DB954;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.spotify-button:hover {
+    opacity: 0.85;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-form {
+    margin: 15px 30px;
+    display: flex;
+    border: 3px solid #718b5c;
+    border-radius: 30px;
+    overflow: hidden;
+    background: white;
+}
+
+.search-form input {
+    flex: 1;
+
+    border: none;
+
+    outline: none;
+
+    padding: 10px 20px;
+
+    background: transparent;
+}
+
+.search-form button {
+    border: none;
+
+    background: transparent;
+
+    padding: 0 15px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   CATEGORY NAV
+========================= */
+
+.category-nav {
+    margin-top: 20px;
+    padding: 12px 30px;
+
+    background: white;
+    border: 6px double #f58bb2;
+    
+    display: flex;
+    gap: 35px;
+}
+
+.category-nav a {
+    color: #222;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.category-nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   BOOK SECTION
+========================= */
+
+.book-section {
+    padding: 30px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =========================
+   BOOK CARD
+========================= */
+
+.book-card {
+    min-height: 150px;
+
+    padding: 10px;
+
+    display: flex;
+
+    gap: 10px;
+
+    background: #f58bb2;
+}
+
+.book-card:nth-child(2) {
+    background: #ffda72;
+}
+
+.book-card:nth-child(3) {
+    background: #f58bb2;
+}
+
+.book-card:nth-child(4) {
+    background: #718b5c;
+}
+
+.book-card:nth-child(5) {
+    background: #f58bb2;
+}
+
+.book-card:nth-child(6) {
+    background: #ffda72;
+}
+
+
+/* =========================
+   BOOK COVER
+========================= */
+
+.book-cover {
+    width: 60px;
+
+    height: 85px;
+
+    background: #d3d3d3;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================
+   BOOK INFO
+========================= */
+
+.book-info h3 {
+    font-size: 15px;
+
+    margin-bottom: 10px;
+}
+
+.book-info p {
+    font-size: 13px;
+
+    margin-bottom: 5px;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.book-actions {
+    margin-top: 10px;
+
+    display: flex;
+
+    gap: 5px;
+}
+
+.book-actions a {
+    color: inherit;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   ADD BOOK
+========================= */
+
+.add-book {
+    display: block;
+    width: fit-content;
+    margin: auto;
+    padding: 10px 25px;
+
+    background: #d95789;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty-message {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 40px;
+}
+
+/* =========================
+   AUTH NAVBAR
+========================= */
+
+.auth-navbar {
+    width: 100%;
+    height: 60px;
+
+    background: #f58bb2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+}
+
+.auth-logo {
+    width: 150px;
+}
+
+.login-button {
+    background: #d95789;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 8px 25px;
+
+    border-radius: 25px;
+}
+
+
+/* =========================
+   AUTH PAGE
+========================= */
+
+.auth-page {
+    min-height: calc(100vh - 60px);
+
+    background: #fff5dc;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1.5fr 1fr;
+
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 50px;
+}
+
+
+/* =========================
+   AUTH IMAGE
+========================= */
+
+.auth-image {
+    text-align: center;
+}
+
+.auth-image img {
+    width: 180px;
+    height: 180px;
+
+    object-fit: contain;
+
+    background: white;
+}
+
+.auth-image p {
+    margin-top: 30px;
+
+    font-size: 20px;
+}
+
+
+/* =========================
+   AUTH FORM
+========================= */
+
+.auth-form {
+    background: white;
+
+    border: 3px solid #f58bb2;
+
+    padding: 30px;
+
+    min-height: 350px;
+}
+
+.auth-form h2 {
+    display: inline-block;
+
+    background: #ffda72;
+
+    color: #d95789;
+
+    padding: 5px;
+
+    margin-bottom: 20px;
+}
+
+.auth-form form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.auth-form input {
+    width: 100%;
+
+    border: none;
+
+    background: #d95789;
+
+    padding: 10px;
+
+    color: white;
+
+    font-family: inherit;
+}
+
+.auth-form button {
+    margin-top: 20px;
+
+    border: none;
+
+    background: #d95789;
+
+    color: white;
+
+    padding: 10px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-message {
+    color: #d95789;
+
+    font-size: 12px;
+}
+
+/* =========================
+   LOGOUT PAGE
+========================= */
+
+.logout-page {
+
+    min-height: calc(100vh - 60px);
+
+    background: #fff5dc;
+
+    padding: 30px 50px;
+
+    text-align: center;
+
+    overflow: hidden;
+
+}
+
+
+.logout-state {
+
+    display: none;
+
+}
+
+
+.logout-state.active {
+
+    display: block;
+
+}
+
+
+.logout-state h1 {
+
+    text-align: left;
+
+    font-size: 24px;
+
+    margin-bottom: 30px;
+
+}
+
+
+/* =========================
+   LOGOUT SCENE
+========================= */
+
+.logout-scene {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 900px;
+
+    height: 450px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+/* =========================
+   ANGRY CAT
+========================= */
+
+.angry-cat {
+
+    width: 300px;
+
+    height: 300px;
+
+    object-fit: contain;
+
+}
+
+
+/* =========================
+   COOKIE
+========================= */
+
+.cookie {
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 150px;
+
+    cursor: pointer;
+
+    transition: transform 0.2s;
+
+}
+
+
+.cookie:hover {
+
+    transform: scale(1.1) rotate(10deg);
+
+}
+
+
+/* =========================
+   COOKIE ANIMATION
+========================= */
+
+.cookie-moving {
+
+    animation: cookieMove 1s ease-in-out forwards;
+
+}
+
+
+@keyframes cookieMove {
+
+    0% {
+
+        transform:
+            translateX(0)
+            rotate(0deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateX(-250px)
+            translateY(-50px)
+            rotate(180deg);
+
+    }
+
+    100% {
+
+        transform:
+            translateX(-450px)
+            translateY(0)
+            rotate(360deg);
+
+    }
+
+}
+
+
+/* =========================
+   HAPPY CAT
+========================= */
+
+.happy-cat {
+
+    width: 300px;
+
+    height: 300px;
+
+    object-fit: contain;
+
+}
+
+
+/* =========================
+   DOOR
+========================= */
+
+.door-button {
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition: transform 0.2s;
+
+}
+
+
+.door-button img {
+
+    width: 250px;
+
+    height: 300px;
+
+    object-fit: contain;
+
+}
+
+
+.door-button:hover {
+
+    transform: scale(1.05);
+
+}
+
+
+/* =========================
+   LOGOUT TEXT
+========================= */
+
+.logout-state p {
+
+    font-size: 18px;
+
+    margin-top: 20px;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .logout-page {
+
+        padding: 25px;
+
+    }
+
+
+    .logout-state h1 {
+
+        font-size: 18px;
+
+    }
+
+
+    .logout-scene {
+
+        height: 350px;
+
+    }
+
+
+    .angry-cat,
+    .happy-cat {
+
+        width: 180px;
+
+        height: 180px;
+
+    }
+
+
+    .cookie {
+
+        font-size: 80px;
+
+    }
+
+
+    .door-button img {
+
+        width: 150px;
+
+        height: 200px;
+
+    }
+
+}

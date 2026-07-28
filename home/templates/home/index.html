@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookie Homepage</title>
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div id="grid-item">
+            <img id="logo" src="{% static 'books/assets/images/bookie_logo.png' %}" alt="MyBookie Logo">
+        </div>
+        <div class="navbar-inline">
+            <ul class="nav">
+                <li><a href="">More Bookie</a></li>
+                <li><a href="{% url 'index' %}">Mybookie</a></li>
+                <li><a href="">About</a></li>
+                <li id="nav-btn"><form action="{% url 'login'%}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">
+                        Login :)
+                    </button>
+                </form></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- hero section -->
+        <div>
+            <img id="hero" src="{% static 'assets/images/hero.svg' %}">
+        </div>
+
+        <!-- Why bookie? -->
+        <section>
+            <div class="bg-2">
+                <img id="hero" src="{% static 'assets/images/hero.svg' %}">
+            </div>
+
+            <div class="bg-2">
+                <h2>Extremely cute bookie</h2>
+                <h1>Making you want to read books!</h1>
+                <p>i’m telling you, reading is so much fun.
+                    wether it’s novels, comics, self improvement, fiction,
+                    non-fiction, religi, assjhashajha</p>
+            </div>
+        </section>
+
+        <!-- Fav genre -->
+        <section>
+            <div>
+                <h2>What's your favorite genre?</h2>
+                <div class="genre">
+                    <button class="genre-btn">Action</button>
+                    <button class="genre-btn">Action</button>
+                    <button class="genre-btn">Action</button>
+                    <button class="genre-btn">Action</button>
+
+                    <button class="genre-btn">Action</button>
+                    <button class="genre-btn">Action</button>
+                    <button class="genre-btn">Action</button>
+                    <button class="genre-btn">Action</button>
+                </div>
+            </div>
+
+            <div>
+                <img id="hero" src="{% static 'assets/images/hero.svg' %}">
+            </div>
+        </section>
+
+        <!-- Rate this website! -->
+        <section class="feedback-section">
+
+            <h2>
+                How was MyBookie?
+            </h2>
+
+            <p>
+                We'd love to hear what you think!
+            </p>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit">
+                    Submit Feedback
+                </button>
+
+            </form>
+
+        </section>
+    </main>
+</body>
+</html>
