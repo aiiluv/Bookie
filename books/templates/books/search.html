@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search Books</title>
+
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div id="grid-item">
+            <img id="logo" src="{% static 'books/assets/images/bookie_logo.png' %}" alt="MyBookie Logo">
+        </div>
+        <div class="navbar-inline">
+            <ul class="nav">
+                <li><a href="">More Bookie</a></li>
+                <li><a href="">Mybookie</a></li>
+                <li><a href="">About</a></li>
+                <li id="nav-btn"><a href="{% url 'logout_confirm'%}">Logout :(</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <main class="search-page">
+
+        <h1>Search Books</h1>
+
+
+        <form method="GET" action="{% url 'book_search' %}" class="search-form">
+
+            <input type="text" name="q" value="{{ query }}" placeholder="Search for a book...">
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+
+        {% if query %}
+
+        <h2>
+            Results for "{{ query }}"
+        </h2>
+
+        {% endif %}
+
+
+        <section class="search-results">
+
+            {% for book in books %}
+
+            <div class="search-book">
+
+                {% if book.volumeInfo.imageLinks.thumbnail %}
+                <img src="{{ book.volumeInfo.imageLinks.thumbnail }}" alt="{{ book.volumeInfo.title }}">
+                {% endif %}
+
+                <h3>
+                    {{ book.volumeInfo.title }}
+                </h3>
+
+                <p>
+                    {% if book.volumeInfo.authors %}
+                    {{ book.volumeInfo.authors|join:", " }}
+                    {% else %}
+                    Unknown author
+                    {% endif %}
+                </p>
+
+                <a href="{% url 'google_book_detail' book.id %}">
+                    View Book
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

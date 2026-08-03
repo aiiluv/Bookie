@@ -10,10 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+#Google books
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / ".env")
+
+GOOGLE_BOOKS_API_KEY = os.getenv("GOOGLE_BOOKS_API_KEY")
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +35,11 @@ ALLOWED_HOSTS = []
 
 #LOGIN WEBSITE
 LOGIN_REDIRECT_URL = '/books/'
-LOGOUT_REDIRECT_URL = '/accounts/logout/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+#Add MEDIA_URL to tell Django where our files will be stored
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
 
 #STYLE
 STATIC_URL = 'static/'

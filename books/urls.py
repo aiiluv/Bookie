@@ -3,27 +3,30 @@ from . import views
 
 urlpatterns = [
 
-    # BOOKS
     path('', views.index, name='index'),
     path('add/', views.book_create, name='book_create'),
+    path('search/', views.book_search, name='book_search'),
+
+    # GOOGLE BOOKS
+    path('search/', views.book_search, name='book_search'),
+
+    path(
+        'search/<str:book_id>/',
+        views.google_book_detail,
+        name='google_book_detail'
+    ),
+
+    path(
+        'search/<str:book_id>/add/',
+        views.add_google_book,
+        name='add_google_book'
+    ),
+
     path('<int:id>/edit/', views.book_update, name='book_update'),
     path('<int:id>/delete/', views.book_delete, name='book_delete'),
+    path('<int:id>/', views.book_detail, name='book_detail'),
 
-    # AUTHENTICATION
     path('register/', views.register, name='register'),
-    path('logget_out', views.goodbye, name='logged_out'),
-
-    #SPOTIFY
-    path(
-        "spotify/login/",
-        views.spotify_login,
-        name="spotify_login"
-    ),
-
-    path(
-        "spotify/callback/",
-        views.spotify_callback,
-        name="spotify_callback"
-    ),
-
+    path('logout-confirm/', views.logout_confirm, name='logout_confirm'),
+    path('logout-confirm-2/', views.logout_confirm_2, name='logout_confirm_2'),
 ]

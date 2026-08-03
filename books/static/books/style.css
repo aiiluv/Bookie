@@ -2,119 +2,144 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Comic Relief", sans-serif;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
     font-family: "Comic Relief", sans-serif;
-    margin: 0px 300px;
+    background: #fff5dc;
+    color: #d95789;
 }
 
-h1, h2, h3 {
-    font-family: "Comic Relief", sans-serif;
-}
 
-/* Navbar */
+/* =========================
+   NAVBAR
+========================= */
 
 nav {
     width: 100%;
-    height: 70px;
+    height: 60px;
 
-    background: #f58bb2;
+    background-color: #f58bb2;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 30px;
+    padding: 0 25px;
+}
+
+#grid-item {
+    display: flex;
+    align-items: center;
 }
 
 #logo {
-    width: 70%;
+    width: 155px;
     height: auto;
-    justify-items: center;
     display: block;
-}
-
-/* navigation */
-
-.navbar-inline {
-    display: flex;
-    align-items: center;
 }
 
 .nav {
     list-style: none;
 
-    margin: 0;
-    padding: 0;
-
-    display: inline-flex;
+    display: flex;
     align-items: center;
+
     gap: 30px;
 }
 
-/* nav link */
-
 .nav li {
-    margin: 0;
-    padding: 0;
+    display: flex;
+    align-items: center;
 }
 
-.nav li a {
-    text-decoration: none;
+.nav a {
     color: white;
-    font-size: 18px;
+
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: bold;
 }
 
-/* btn logout */
+.nav a:hover {
+    text-decoration: underline;
+}
 
 #nav-btn button {
     border: none;
-    
-    font-size: 18px;
-    background: #d95789;
+
+    background-color: #d95789;
+
     color: white;
 
-    padding: 7px 20px;
+    font-family: inherit;
+    font-size: 15px;
 
-    border-radius: 20px;
+    padding: 8px 30px;
 
-    font-family: "Comic Relief", sans-serif;
+    border-radius: 25px;
 
     cursor: pointer;
 }
 
 #nav-btn button:hover {
-    opacity: 0.8;
+    background-color: #c94b7d;
 }
 
-/* MAIN */
+/* =========================
+   MAIN
+========================= */
+
+main {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 .container {
+    width: 100%;
     min-height: 100vh;
-    margin: auto;
-    background: #fff5dc;
+
+    margin: 0;
     padding-bottom: 60px;
+
+    background: #fff5dc;
 }
 
-/* Halo */
 
-.halo{
+/* =========================
+   GREETING
+========================= */
+
+.halo {
     display: inline-block;
+
     margin: 25px 30px 15px;
     padding: 4px 12px;
+
     background: #ffda72;
     color: #6b8050;
+
     font-size: 38px;
 }
 
-/* dashboard */
+
+/* =========================
+   DASHBOARD
+========================= */
 
 .dashboard {
+    width: 100%;
+
     display: grid;
 
-    /* Statistik lebih besar, Now Playing lebih kecil */
     grid-template-columns: 2fr 1fr;
 
     gap: 15px;
@@ -124,59 +149,85 @@ nav {
     align-items: stretch;
 }
 
+
+/* =========================
+   STATISTICS
+========================= */
+
 .statistic {
+    width: 100%;
+
     display: grid;
 
-    /* 3 kolom */
     grid-template-columns: 1fr 1fr 1fr;
 
-    padding: 20px;
-    min-height: 130px;
-    
-    background-color: #fff;
-    border: 3px solid #6b8050;
-
     gap: 10px;
+
+    padding: 10px;
+
+    min-height: 130px;
+
+    background-color: white;
+
+    border: 3px solid #6b8050;
 }
+
+
+/* =========================
+   BIG CARD
+========================= */
 
 .big-card {
     display: flex;
+
     flex-direction: column;
 
     justify-content: space-between;
+
+    min-width: 0;
+
     padding: 10px;
 
     background-color: #f58bb2;
-
-    min-width: 0;
-    margin-bottom: 50px;
 }
+
+
+/* =========================
+   MIDDLE CARDS
+========================= */
 
 .card {
     display: grid;
+
     grid-template-rows: 1fr 1fr;
 
     gap: 10px;
-    min-width: 0;
 
-    margin-bottom: 50px;
+    min-width: 0;
 }
+
+
+/* =========================
+   SMALL CARD
+========================= */
 
 .small-card {
     display: flex;
+
     flex-direction: column;
 
     justify-content: space-between;
 
+    min-width: 0;
+
     padding: 10px;
 
     background-color: #f58bb2;
-
-    min-width: 0;
 }
 
+
 /* =========================
-   TEXT
+   DASHBOARD TEXT
 ========================= */
 
 .big-card p,
@@ -197,8 +248,11 @@ nav {
 ========================= */
 
 .now-playing {
+    width: 100%;
     min-height: 130px;
+
     padding: 10px;
+
     background-color: white;
 
     border: 3px solid #6b8050;
@@ -207,12 +261,14 @@ nav {
 .now-playing small {
     display: block;
 
-    background-color: #ffda72;
-
     padding: 8px;
+
+    background-color: #ffda72;
 }
 
 .music-content {
+    height: calc(100% - 35px);
+
     display: flex;
 
     flex-direction: column;
@@ -222,8 +278,6 @@ nav {
     justify-content: center;
 
     gap: 10px;
-
-    height: calc(100% - 35px);
 }
 
 .music-image {
@@ -240,13 +294,23 @@ nav {
     color: white;
 }
 
+
+/* =========================
+   SPOTIFY BUTTON
+========================= */
+
 .spotify-button {
     display: inline-block;
+
     padding: 12px 20px;
-    background-color: #1DB954;
+
+    background-color: #1db954;
     color: white;
+
     text-decoration: none;
+
     border-radius: 8px;
+
     font-weight: bold;
 }
 
@@ -254,29 +318,40 @@ nav {
     opacity: 0.85;
 }
 
+
 /* =========================
    SEARCH
 ========================= */
 
 .search-form {
+    width: calc(100% - 60px);
+
     margin: 15px 30px;
+
     display: flex;
+
     border: 3px solid #718b5c;
+
     border-radius: 30px;
+
     overflow: hidden;
+
     background: white;
 }
 
 .search-form input {
     flex: 1;
 
-    border: none;
+    min-width: 0;
 
+    border: none;
     outline: none;
 
     padding: 10px 20px;
 
     background: transparent;
+
+    font-family: inherit;
 }
 
 .search-form button {
@@ -287,27 +362,37 @@ nav {
     padding: 0 15px;
 
     cursor: pointer;
+
+    font-family: inherit;
 }
 
 
 /* =========================
-   CATEGORY NAV
+   CATEGORY NAVIGATION
 ========================= */
 
 .category-nav {
+    width: 100%;
+
     margin-top: 20px;
+
     padding: 12px 30px;
 
     background: white;
-    border: 6px double #f58bb2;
-    
+
+    border-top: 6px double #f58bb2;
+    border-bottom: 6px double #f58bb2;
+
     display: flex;
+
     gap: 35px;
 }
 
 .category-nav a {
     color: #222;
+
     text-decoration: none;
+
     font-weight: bold;
 }
 
@@ -321,11 +406,24 @@ nav {
 ========================= */
 
 .book-section {
+    width: 100%;
     padding: 30px;
-
     display: grid;
 
     grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* =========================
+   BOOK SECTION
+========================= */
+
+.book-section {
+    width: 100%;
+    padding: 30px;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
     gap: 20px;
 }
@@ -336,15 +434,21 @@ nav {
 ========================= */
 
 .book-card {
-    min-height: 150px;
+    min-width: 190;
+    min-height: 190px;
 
-    padding: 10px;
+    padding: 15px;
 
     display: flex;
+    align-items: flex-start;
 
-    gap: 10px;
+    gap: 15px;
 
     background: #f58bb2;
+
+    border: 3px solid #d95789;
+
+    transition: transform 0.2s ease;
 }
 
 .book-card:nth-child(2) {
@@ -367,25 +471,8 @@ nav {
     background: #ffda72;
 }
 
-
-/* =========================
-   BOOK COVER
-========================= */
-
-.book-cover {
-    width: 60px;
-
-    height: 85px;
-
-    background: #d3d3d3;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    flex-shrink: 0;
+.book-card:hover {
+    transform: translateY(-4px);
 }
 
 
@@ -393,16 +480,83 @@ nav {
    BOOK INFO
 ========================= */
 
-.book-info h3 {
-    font-size: 15px;
+.book-info {
+    min-width: 0;
 
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
 }
 
-.book-info p {
+
+/* =========================
+   BOOK TITLE
+========================= */
+
+.book-title {
+    color: #222;
+
+    text-decoration: none;
+}
+
+.book-title h3 {
+    font-size: 20px;
+
+    line-height: 1.2;
+
+    margin-bottom: 8px;
+
+    overflow-wrap: anywhere;
+}
+
+.book-title:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   AUTHOR
+========================= */
+
+.book-author {
+    font-size: 14px;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================
+   GENRE
+========================= */
+
+.book-genre {
     font-size: 13px;
 
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+.book-category {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    background: white;
+
+    color: #d95789;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    border-radius: 15px;
+
+    text-transform: capitalize;
 }
 
 
@@ -411,17 +565,36 @@ nav {
 ========================= */
 
 .book-actions {
-    margin-top: 10px;
-
     display: flex;
 
-    gap: 5px;
+    gap: 8px;
+
+    margin-top: auto;
+    padding-top: 15px;
 }
 
 .book-actions a {
-    color: inherit;
+    text-decoration: none;
 
-    font-size: 11px;
+    font-size: 12px;
+
+    padding: 5px 10px;
+
+    border-radius: 15px;
+}
+
+.edit-btn {
+    background: white;
+    color: #d95789;
+}
+
+.delete-btn {
+    background: #d95789;
+    color: white;
+}
+
+.book-actions a:hover {
+    opacity: 0.75;
 }
 
 
@@ -431,19 +604,29 @@ nav {
 
 .add-book {
     display: block;
+
     width: fit-content;
+
     margin: auto;
+
     padding: 10px 25px;
 
     background: #d95789;
+
     color: white;
+
     text-decoration: none;
+
     border-radius: 20px;
+}
+
+.add-book:hover {
+    opacity: 0.8;
 }
 
 
 /* =========================
-   EMPTY
+   EMPTY MESSAGE
 ========================= */
 
 .empty-message {
@@ -455,424 +638,261 @@ nav {
 }
 
 /* =========================
-   AUTH NAVBAR
+   ADD BOOK PAGE
 ========================= */
 
-.auth-navbar {
-    width: 100%;
-    height: 60px;
-
-    background: #f58bb2;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 25px;
-}
-
-.auth-logo {
-    width: 150px;
-}
-
-.login-button {
-    background: #d95789;
-
-    color: white;
-
-    text-decoration: none;
-
-    padding: 8px 25px;
-
-    border-radius: 25px;
-}
-
-
-/* =========================
-   AUTH PAGE
-========================= */
-
-.auth-page {
+.add-book-page {
     min-height: calc(100vh - 60px);
 
     background: #fff5dc;
 
-    display: grid;
-
-    grid-template-columns: 1fr 1.5fr 1fr;
-
+    display: flex;
+    justify-content: center;
     align-items: center;
 
-    gap: 30px;
-
-    padding: 50px;
+    padding: 50px 20px;
 }
 
+.add-book-box {
+    width: 450px;
 
-/* =========================
-   AUTH IMAGE
-========================= */
-
-.auth-image {
-    text-align: center;
-}
-
-.auth-image img {
-    width: 180px;
-    height: 180px;
-
-    object-fit: contain;
-
-    background: white;
-}
-
-.auth-image p {
-    margin-top: 30px;
-
-    font-size: 20px;
-}
-
-
-/* =========================
-   AUTH FORM
-========================= */
-
-.auth-form {
     background: white;
 
     border: 3px solid #f58bb2;
 
-    padding: 30px;
-
-    min-height: 350px;
+    padding: 35px;
 }
 
-.auth-form h2 {
+.add-book-box h1 {
     display: inline-block;
 
     background: #ffda72;
 
     color: #d95789;
 
-    padding: 5px;
+    padding: 8px 12px;
+
+    margin-bottom: 15px;
+}
+
+.add-book-box p {
+    color: #333;
 
     margin-bottom: 20px;
 }
 
-.auth-form form {
+.add-book-box form {
     display: flex;
-
     flex-direction: column;
 
     gap: 10px;
 }
 
-.auth-form input {
+.add-book-box label {
+    font-weight: bold;
+}
+
+.add-book-box input,
+.add-book-box select,
+.add-book-box textarea {
     width: 100%;
 
-    border: none;
-
-    background: #d95789;
+    border: 2px solid #f58bb2;
 
     padding: 10px;
-
-    color: white;
 
     font-family: inherit;
+
+    background: #fff5dc;
 }
 
-.auth-form button {
-    margin-top: 20px;
-
+.save-book-btn {
     border: none;
 
     background: #d95789;
 
     color: white;
 
-    padding: 10px;
+    padding: 12px;
+
+    font-family: inherit;
+    font-weight: bold;
 
     cursor: pointer;
-
-    font-family: inherit;
 }
 
+.save-book-btn:hover {
+    opacity: 0.8;
+}
 
-/* =========================
-   ERROR
-========================= */
+.back-book-btn {
+    display: block;
 
-.error-message {
+    width: fit-content;
+
+    margin: 20px auto 0;
+
     color: #d95789;
 
-    font-size: 12px;
+    text-decoration: none;
+
+    font-weight: bold;
 }
 
 /* =========================
-   LOGOUT PAGE
+   BOOK DETAIL
 ========================= */
 
-.logout-page {
-
-    min-height: calc(100vh - 60px);
+.book-detail-page {
+    min-height: calc(100vh - 70px);
 
     background: #fff5dc;
 
-    padding: 30px 50px;
-
-    text-align: center;
-
-    overflow: hidden;
-
+    padding: 30px;
 }
 
-
-.logout-state {
-
-    display: none;
-
-}
-
-
-.logout-state.active {
-
-    display: block;
-
-}
-
-
-.logout-state h1 {
-
-    text-align: left;
-
-    font-size: 24px;
-
-    margin-bottom: 30px;
-
-}
-
-
-/* =========================
-   LOGOUT SCENE
-========================= */
-
-.logout-scene {
-
-    position: relative;
-
-    width: 100%;
-
+.book-detail {
     max-width: 900px;
 
-    height: 450px;
+    margin: 30px auto;
 
-    margin: auto;
+    padding: 30px;
 
+    background: white;
+
+    border: 4px solid #f58bb2;
+
+    display: grid;
+
+    grid-template-columns: 280px 1fr;
+
+    gap: 40px;
+}
+
+.book-detail-cover {
     display: flex;
 
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.book-detail-cover img,
+.cover-placeholder {
+    width: 220px;
+    height: 320px;
+
+    object-fit: cover;
+
+    background: #ffda72;
+
+    border: 3px solid #6b8050;
+}
+
+.cover-placeholder {
+    display: flex;
+
+    justify-content: center;
     align-items: center;
 
-    justify-content: space-between;
-
+    font-size: 60px;
 }
 
+.book-status {
+    display: inline-block;
 
-/* =========================
-   ANGRY CAT
-========================= */
+    padding: 6px 12px;
 
-.angry-cat {
+    background: #ffda72;
 
-    width: 300px;
+    color: #6b8050;
 
-    height: 300px;
+    font-weight: bold;
 
+    text-transform: capitalize;
+}
+
+.book-detail-info h1 {
+    margin-top: 15px;
+
+    font-size: 36px;
+
+    color: #d95789;
+}
+
+.book-detail-info h3 {
+    margin-top: 8px;
+
+    color: #6b8050;
+}
+
+.book-genre {
+    margin-top: 15px;
+
+    color: #555;
+}
+
+.book-description {
+    margin-top: 30px;
+}
+
+.book-description h2 {
+    color: #d95789;
+
+    margin-bottom: 10px;
+}
+
+.book-description p {
+    color: #444;
+
+    line-height: 1.6;
+}
+
+.book-detail-actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 30px;
+}
+
+.edit-book-btn,
+.delete-book-btn {
+    padding: 10px 20px;
+
+    text-decoration: none;
+
+    color: white;
+
+    border-radius: 20px;
+}
+
+.edit-book-btn {
+    background: #d95789;
+}
+
+.delete-book-btn {
+    background: #6b8050;
+}
+
+.back-book-btn {
+    color: #d95789;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+.back-book-btn:hover {
+    text-decoration: underline;
+}
+
+.book-cover {
+    width: 110px;
+    height: 155px;
     object-fit: contain;
-
+    object-position: center;
 }
 
-
-/* =========================
-   COOKIE
-========================= */
-
-.cookie {
-
-    border: none;
-
-    background: transparent;
-
-    font-size: 150px;
-
-    cursor: pointer;
-
-    transition: transform 0.2s;
-
-}
-
-
-.cookie:hover {
-
-    transform: scale(1.1) rotate(10deg);
-
-}
-
-
-/* =========================
-   COOKIE ANIMATION
-========================= */
-
-.cookie-moving {
-
-    animation: cookieMove 1s ease-in-out forwards;
-
-}
-
-
-@keyframes cookieMove {
-
-    0% {
-
-        transform:
-            translateX(0)
-            rotate(0deg);
-
-    }
-
-    50% {
-
-        transform:
-            translateX(-250px)
-            translateY(-50px)
-            rotate(180deg);
-
-    }
-
-    100% {
-
-        transform:
-            translateX(-450px)
-            translateY(0)
-            rotate(360deg);
-
-    }
-
-}
-
-
-/* =========================
-   HAPPY CAT
-========================= */
-
-.happy-cat {
-
-    width: 300px;
-
-    height: 300px;
-
-    object-fit: contain;
-
-}
-
-
-/* =========================
-   DOOR
-========================= */
-
-.door-button {
-
-    border: none;
-
-    background: transparent;
-
-    cursor: pointer;
-
-    transition: transform 0.2s;
-
-}
-
-
-.door-button img {
-
-    width: 250px;
-
-    height: 300px;
-
-    object-fit: contain;
-
-}
-
-
-.door-button:hover {
-
-    transform: scale(1.05);
-
-}
-
-
-/* =========================
-   LOGOUT TEXT
-========================= */
-
-.logout-state p {
-
-    font-size: 18px;
-
-    margin-top: 20px;
-
-}
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 700px) {
-
-    .logout-page {
-
-        padding: 25px;
-
-    }
-
-
-    .logout-state h1 {
-
-        font-size: 18px;
-
-    }
-
-
-    .logout-scene {
-
-        height: 350px;
-
-    }
-
-
-    .angry-cat,
-    .happy-cat {
-
-        width: 180px;
-
-        height: 180px;
-
-    }
-
-
-    .cookie {
-
-        font-size: 80px;
-
-    }
-
-
-    .door-button img {
-
-        width: 150px;
-
-        height: 200px;
-
-    }
-
+.book-card {
+    min-height: 210px;
 }

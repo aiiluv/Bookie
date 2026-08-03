@@ -1,11 +1,13 @@
-/* =========================
-   FONT
-========================= */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
@@ -43,11 +45,6 @@ nav {
     display: block;
 }
 
-
-/* =========================
-   NAVIGATION
-========================= */
-
 .nav {
     list-style: none;
 
@@ -75,11 +72,6 @@ nav {
     text-decoration: underline;
 }
 
-
-/* =========================
-   NAV BUTTON
-========================= */
-
 #nav-btn button {
     border: none;
 
@@ -101,56 +93,111 @@ nav {
     background-color: #c94b7d;
 }
 
-
-/* =========================
-   HERO
-========================= */
-
-#hero {
-    display: block;
-
+/* ========HERO========== */
+.hero {
     width: 100%;
-    max-width: 100%;
+    height: 800px;
 
-    height: auto;
-}
-
-
-/* =========================
-   HERO SECTION
-========================= */
-
-main > div:first-child {
-    width: 100%;
-
-    min-height: 370px;
+    background-image: url("assets/images/hero-fix.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
 
     background-color: #f8d6dc;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     overflow: hidden;
 }
 
-main > div:first-child #hero {
-    width: 100%;
-    height: 100%;
+.hero-content {
+    position: absolute;
 
-    object-fit: cover;
+    top: 50%;
+    left: 70px;
+
+    transform: translateY(-50%);
+
+    z-index: 2;
 }
 
+.hero-small {
+    margin: 0 0 50px 0;
+
+    font-size: 42px;
+    line-height: 1.2;
+
+    color: #d95789;
+
+    animation: floating 2s ease-in-out infinite;
+}
+
+.hero-small i {
+    font-family: cursive;
+}
+
+.hero-content h1 {
+    margin: 0;
+
+    font-size: 80px;
+    line-height: 0.95;
+
+    color: #d95789;
+
+    animation: floating 2s ease-in-out infinite;
+}
+
+.bookie-text {
+    position: absolute;
+
+    left: 360px;
+    top: 58px;
+
+    display: flex;
+    flex-direction: column;
+
+    font-size: 38px;
+    line-height: 1.05;
+
+    color: #64854e;
+
+    white-space: nowrap;
+}
+
+.bookie-text span:nth-child(1) {
+    animation: floating 2s ease-in-out infinite;
+}
+
+.bookie-text span:nth-child(2) {
+    animation: floating 2.3s ease-in-out infinite;
+}
+
+.bookie-text span:nth-child(3) {
+    animation: floating 2.6s ease-in-out infinite;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
 
 /* =========================
    WHY BOOKIE
 ========================= */
 
-section {
+.why-section {
     width: 100%;
-}
-
-section:nth-of-type(1) {
     min-height: 430px;
 
     padding: 70px 5%;
@@ -169,21 +216,32 @@ section:nth-of-type(1) {
 
 /* IMAGE */
 
-.bg-2 {
+.why-image {
     display: flex;
+
     align-items: center;
     justify-content: center;
 }
 
-.bg-2 img {
+.why-image img {
     width: 80%;
     max-width: 400px;
+
+    height: auto;
+
+    display: block;
 }
 
 
 /* TEXT */
 
-.bg-2 h2 {
+.why-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.why-content h2 {
     display: inline-block;
 
     padding: 12px 50px;
@@ -201,7 +259,7 @@ section:nth-of-type(1) {
     text-align: center;
 }
 
-.bg-2 h1 {
+.why-content h1 {
     margin-bottom: 15px;
 
     color: #d95789;
@@ -211,7 +269,7 @@ section:nth-of-type(1) {
     line-height: 1.3;
 }
 
-.bg-2 p {
+.why-content p {
     max-width: 600px;
 
     color: #d95789;
@@ -221,13 +279,13 @@ section:nth-of-type(1) {
     line-height: 1.6;
 }
 
-
 /* =========================
    FAVORITE GENRE
 ========================= */
 
-section:nth-of-type(2) {
-    min-height: 400px;
+.genre-section {
+    width: 100%;
+    min-height: 430px;
 
     padding: 70px 5%;
 
@@ -235,6 +293,7 @@ section:nth-of-type(2) {
 
     display: grid;
 
+    /* KIRI 50% | KANAN 50% */
     grid-template-columns: 1fr 1fr;
 
     align-items: center;
@@ -242,35 +301,59 @@ section:nth-of-type(2) {
     gap: 40px;
 }
 
-section:nth-of-type(2) h2 {
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+.genre-content {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+.genre-content h2 {
     margin-bottom: 30px;
 
     color: #d95789;
 
     font-size: 35px;
+
+    line-height: 1.2;
+}
+
+.genre-content h2 span {
+    color: #64854e;
 }
 
 
-/* GENRE BUTTONS */
+/* =========================
+   2 COLUMN GENRE
+========================= */
 
 .genre {
     display: grid;
 
-    grid-template-columns: repeat(2, 130px);
+    grid-template-columns: 130px 130px;
 
     gap: 10px;
+
+    width: max-content;
 }
 
 .genre-btn {
+    width: 130px;
+    height: 44px;
+
     border: none;
 
     background-color: #d95789;
 
     color: white;
 
-    padding: 12px 15px;
-
     font-family: inherit;
+
     font-size: 17px;
 
     cursor: pointer;
@@ -283,21 +366,35 @@ section:nth-of-type(2) h2 {
 }
 
 
-/* GENRE IMAGE */
+/* =========================
+   RIGHT SIDE
+========================= */
 
-section:nth-of-type(2) #hero {
+.genre-image {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.genre-image img {
     width: 80%;
     max-width: 400px;
 
-    margin: auto;
-}
+    height: auto;
 
+    display: block;
+}
 
 /* =========================
    FEEDBACK
 ========================= */
 
-.feedback-section {
+main > section:last-child {
+    width: 100%;
     min-height: 500px;
 
     padding: 70px 20px;
@@ -306,33 +403,11 @@ section:nth-of-type(2) #hero {
 
     display: flex;
 
-    flex-direction: column;
-
     align-items: center;
-
-    text-align: center;
+    justify-content: center;
 }
 
-.feedback-section h2 {
-    color: #d95789;
-
-    font-size: 35px;
-
-    margin-bottom: 10px;
-}
-
-.feedback-section > p {
-    color: #d95789;
-
-    font-size: 18px;
-
-    margin-bottom: 30px;
-}
-
-
-/* FEEDBACK FORM */
-
-.feedback-section form {
+main > section:last-child form {
     width: 90%;
     max-width: 650px;
 
@@ -340,31 +415,16 @@ section:nth-of-type(2) #hero {
 
     background-color: white;
 
-    border: 3px solid #6b8050;
+    border: 3px solid #64854e;
 }
 
-
-/* FORM ELEMENTS */
-
-.feedback-section form p {
+main > section:last-child form p {
     margin-bottom: 20px;
-
-    text-align: left;
 }
 
-.feedback-section label {
-    display: block;
-
-    margin-bottom: 7px;
-
-    color: #d95789;
-
-    font-weight: bold;
-}
-
-.feedback-section input,
-.feedback-section textarea,
-.feedback-section select {
+main > section:last-child input,
+main > section:last-child textarea,
+main > section:last-child select {
     width: 100%;
 
     padding: 10px;
@@ -378,14 +438,7 @@ section:nth-of-type(2) #hero {
     background-color: #fffaf0;
 }
 
-.feedback-section textarea {
-    resize: vertical;
-}
-
-
-/* SUBMIT */
-
-.feedback-section button {
+main > section:last-child button {
     border: none;
 
     background-color: #d95789;
@@ -395,32 +448,10 @@ section:nth-of-type(2) #hero {
     padding: 12px 35px;
 
     font-family: inherit;
+
     font-size: 16px;
 
     cursor: pointer;
-}
-
-.feedback-section button:hover {
-    background-color: #f58bb2;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    min-height: 180px;
-
-    padding: 40px 5%;
-
-    background-color: #f8d6dc;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
 }
 
 
@@ -430,28 +461,51 @@ footer {
 
 @media (max-width: 800px) {
 
-    nav {
+    /* HERO */
+
+    .hero {
         height: auto;
+        min-height: 500px;
 
-        padding: 15px 20px;
-
-        flex-direction: column;
-
-        gap: 15px;
+        grid-template-columns: 1fr;
     }
 
-    .nav {
-        gap: 15px;
+    .hero-content {
+        min-height: 250px;
 
-        flex-wrap: wrap;
+        padding: 40px 30px;
 
-        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .hero-small {
+        font-size: 28px;
+    }
+
+    .hero-content h1 {
+        font-size: 55px;
+    }
+
+    .bookie-text {
+        position: static;
+
+        transform: none;
+
+        margin-left: 170px;
+
+        margin-top: -80px;
+
+        font-size: 28px;
+    }
+
+    .hero-image {
+        height: 350px;
     }
 
 
-    /* WHY BOOKIE */
+    /* WHY */
 
-    section:nth-of-type(1) {
+    .why-section {
         grid-template-columns: 1fr;
 
         text-align: center;
@@ -459,24 +513,28 @@ footer {
         padding: 50px 25px;
     }
 
-    .bg-2 p {
-        margin: auto;
+    .why-content {
+        align-items: center;
     }
 
-    .bg-2 h2 {
+    .why-content h2 {
         font-size: 20px;
 
         padding: 10px 25px;
     }
 
-    .bg-2 h1 {
+    .why-content h1 {
         font-size: 30px;
+    }
+
+    .why-content p {
+        margin: auto;
     }
 
 
     /* GENRE */
 
-    section:nth-of-type(2) {
+    .genre-section {
         grid-template-columns: 1fr;
 
         text-align: center;
@@ -488,53 +546,37 @@ footer {
         margin: auto;
     }
 
-    section:nth-of-type(2) #hero {
+    .genre-image img {
         width: 70%;
     }
-
 }
 
 
 @media (max-width: 500px) {
 
-    #logo {
-        width: 130px;
+    .hero-small {
+        font-size: 24px;
     }
 
-    .nav {
-        gap: 10px;
+    .hero-content h1 {
+        font-size: 48px;
     }
 
-    .nav a {
-        font-size: 13px;
+    .bookie-text {
+        margin-left: 130px;
+
+        font-size: 24px;
     }
 
-    #nav-btn button {
-        padding: 7px 18px;
-    }
-
-
-    /* HERO */
-
-    main > div:first-child {
-        min-height: 250px;
-    }
-
-
-    /* WHY BOOKIE */
-
-    .bg-2 h1 {
+    .why-content h1 {
         font-size: 25px;
     }
 
-    .bg-2 p {
+    .why-content p {
         font-size: 15px;
     }
 
-
-    /* GENRE */
-
-    section:nth-of-type(2) h2 {
+    .genre-content h2 {
         font-size: 27px;
     }
 
@@ -543,18 +585,8 @@ footer {
     }
 
     .genre-btn {
+        width: 110px;
+
         font-size: 14px;
     }
-
-
-    /* FEEDBACK */
-
-    .feedback-section h2 {
-        font-size: 28px;
-    }
-
-    .feedback-section form {
-        padding: 20px;
-    }
-
 }

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.volumeInfo.title }}</title>
+</head>
+
+<body>
+
+    {% if book %}
+
+        <h1>{{ book.volumeInfo.title }}</h1>
+
+        {% if book.volumeInfo.imageLinks.thumbnail %}
+            <img
+                src="{{ book.volumeInfo.imageLinks.thumbnail }}"
+                alt="{{ book.volumeInfo.title }}"
+                width="200"
+            >
+        {% endif %}
+
+        <h3>
+            {% if book.volumeInfo.authors %}
+                {{ book.volumeInfo.authors|join:", " }}
+            {% else %}
+                Unknown author
+            {% endif %}
+        </h3>
+
+
+        <!-- GENRE -->
+
+        <h3>Genre</h3>
+
+        {% if book.volumeInfo.categories %}
+            <p>
+                {{ book.volumeInfo.categories|join:", " }}
+            </p>
+        {% else %}
+            <p>Unknown genre</p>
+        {% endif %}
+
+
+        <!-- DESCRIPTION -->
+
+        <h3>Description</h3>
+
+        {% if book.volumeInfo.description %}
+            <p>{{ book.volumeInfo.description|safe }}</p>
+        {% else %}
+            <p>No description available.</p>
+        {% endif %}
+
+
+        <!-- ADD -->
+
+        <form method="POST" action="{% url 'add_google_book' book.id %}">
+            {% csrf_token %}
+
+            <button type="submit">
+                + Add to My Bookie
+            </button>
+        </form>
+
+    {% else %}
+
+        <h2>Book not found.</h2>
+
+    {% endif %}
+
+</body>
+
+</html>

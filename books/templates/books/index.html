@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav>
@@ -23,12 +25,7 @@
                 <li><a href="">More Bookie</a></li>
                 <li><a href="">Mybookie</a></li>
                 <li><a href="">About</a></li>
-                <li id="nav-btn"><form action="{% url 'logout'%}" method="post">
-                    {% csrf_token %}
-                    <button type="submit">
-                        Logout :(
-                    </button>
-                </form></li>
+                <li id="nav-btn"><a href="{% url 'logout_confirm'%}">Logout :(</a></li>
             </ul>
         </div>
     </nav>
@@ -36,89 +33,69 @@
     <!-- Main -->
     <main class="container">
         <!-- Halo -->
-         <h2 class="halo">
+        <h2 class="halo">
             Hello, {{user.username}} :)
-         </h2>
+        </h2>
 
         <!-- Dashboard -->
         <section class="dashboard">
 
-    <!-- STATISTICS -->
-        <div class="statistic">
+            <!-- STATISTICS -->
+            <div class="statistic">
 
-            <!-- Total -->
-            <div class="big-card">
-
-                <p>Total books:</p>
-
-                <strong>
-                    {{ total_books }}
-                </strong>
-
-            </div>
-
-
-            <!-- Unread + Read -->
-            <div class="card">
-
-                <div class="small-card">
-
-                    <p>Unread books:</p>
-
+                <!-- Total -->
+                <div class="big-card">
+                    <p>Total books:</p>
                     <strong>
-                        {{ unread_books }}
+                        {{ total_books }}
                     </strong>
-
                 </div>
 
+                <!-- Unread, Read -->
+                <div class="card">
+                    <div class="small-card">
+                        <p>Unread books:</p>
+                        <strong>
+                            {{ unread_books }}
+                        </strong>
+                    </div>
 
-                <div class="small-card">
-
-                    <p>Read books:</p>
-
-                    <strong>
-                        {{ read_books }}
-                    </strong>
-
+                    <div class="small-card">
+                        <p>Read books:</p>
+                        <strong>
+                            {{ read_books }}
+                        </strong>
+                    </div>
                 </div>
 
+                <!-- Dropped -->
+                <div class="big-card">
+                    <p>Dropped books:</p>
+                    <strong>
+                        {{ dropped_books }}
+                    </strong>
+                </div>
             </div>
 
 
-            <!-- Dropped -->
-            <div class="big-card">
+            <!-- NOW PLAYING -->
+            <div class="now-playing">
 
-                <p>Dropped books:</p>
+                <small>
+                    now playing:
+                </small>
 
-                <strong>
-                    {{ dropped_books }}
-                </strong>
+                <div class="music-content">
+                    <a href="#" class="spotify-button">
+                        🎵 Connect Spotify
+                    </a>
+                    <p>
+                        Rude!
+                    </p>
 
+                </div>
             </div>
-
-        </div>
-
-
-        <!-- NOW PLAYING -->
-        <div class="now-playing">
-
-            <small>
-                now playing:
-            </small>
-
-            <div class="music-content">
-                <a href="{% url 'spotify_login' %}" class="spotify-button">
-                    🎵 Connect Spotify
-                </a>
-                <p>
-                    Rude!
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
+        </section>
 
         <!-- SEARCHING -->
         <form method="GET" class="search-form">
@@ -133,43 +110,66 @@
             <a href="?category=read">Read</a>
             <a href="?category=dropped">Dropped</a>
 
-             <!-- ADD BOOK -->
+            <!-- ADD BOOK -->
 
-            <a href="{% url 'book_create' %}" class="add-book">
+            <a href="{% url 'book_search' %}" class="add-book">
                 + Add Book
             </a>
         </nav>
 
         <!-- Books section -->
         <section class="book-section">
+
             {% for book in books %}
 
-            <article class="book-card">
+            <div class="book-card">
+
                 <!-- Book cover -->
-                 <div class="book-cover">
-                    <img src="" alt="">
-                 </div>
+                <img 
+                src="{{ book.book_cover }}" 
+                alt="{{ book.book_title }}"
+                class="book-cover"
+                >
 
                 <!-- Book information -->
-                 <div class="book-info">
-                    <h3>{{book.book_title}}</h3>
-                    <p>{{book.book_genre}}</p>
-                    <p>{{book.book_category}}</p>
+                <div class="book-info">
+
+                    <!-- CLICK TITLE TO DETAIL -->
+                    <h3>
+                        <a href="{% url 'book_detail' book.id %}">
+                            {{ book.book_title }}
+                        </a>
+                    </h3>
+
+                    <p>{{ book.book_author }}</p>
+                    <p>{{ book.display_genre }}</p>
+                    <p>{{ book.book_category }}</p>
 
                     <!-- Action -->
-                    <div class="book-action">
-                        <a href="{% url 'book_update' book.id %}">Edit</a>
-                        <a href="{% url 'book_delete' book.id %}">Delete</a>
+                    <div class="book-actions">
+                        <a href="{% url 'book_update' book.id %}">
+                            Edit
+                        </a>
+
+                        <a href="{% url 'book_delete' book.id %}">
+                            Delete
+                        </a>
                     </div>
-                 </div>
-            </article>
+
+                </div>
+
+            </div>
 
             {% empty %}
+
             <p class="empty-message">
                 You haven't added any books yet!
             </p>
+
             {% endfor %}
+
         </section>
     </main>
 </body>
+
 </html>

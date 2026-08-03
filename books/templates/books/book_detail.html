@@ -1,0 +1,139 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ book.book_title }} | MyBookie</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div id="grid-item">
+            <img id="logo" src="{% static 'books/assets/images/bookie_logo.png' %}" alt="MyBookie Logo">
+        </div>
+        <div class="navbar-inline">
+            <ul class="nav">
+                <li><a href="">More Bookie</a></li>
+                <li><a href="">Mybookie</a></li>
+                <li><a href="">About</a></li>
+                <li id="nav-btn">
+                    <form action="{% url 'logout'%}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">
+                            Logout :(
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- Book Detail -->
+
+    <main class="book-detail-page">
+
+        <a class="back-book-btn" href="{% url 'index' %}">
+            ← Back to MyBookie
+        </a>
+
+
+        <section class="book-detail">
+
+            <!-- Cover -->
+
+            <div class="book-detail-cover">
+
+                {% if book.book_cover %}
+
+                <img src="{{ book.book_cover }}" alt="{{ book.book_title }}">
+
+                {% else %}
+
+                <div class="cover-placeholder">
+                    📖
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Information -->
+
+            <div class="book-detail-info">
+
+                <span class="book-status">
+                    {{ book.book_category }}
+                </span>
+
+                <h1>
+                    {{ book.book_title }}
+                </h1>
+
+                {% if book.book_author %}
+
+                <h3>
+                    by {{ book.book_author }}
+                </h3>
+
+                {% endif %}
+
+                <p class="book-genre">
+                    {{ book.book_genre }}
+                </p>
+
+
+                {% if book.book_description %}
+
+                <div class="book-description">
+
+                    <h2>
+                        About this book
+                    </h2>
+
+                    <p>
+                        {{ book.book_description }}
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+
+                <div class="book-detail-actions">
+
+                    <a href="{% url 'book_update' book.id %}" class="edit-book-btn">
+                        Edit Book
+                    </a>
+
+                    <a href="{% url 'book_delete' book.id %}" class="delete-book-btn">
+                        Delete
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

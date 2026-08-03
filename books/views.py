@@ -15,6 +15,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Books, SpotifyToken
 from .forms import BooksForm
+from .google_books import search_books, get_book
 
 def register(request):
 
@@ -59,6 +60,12 @@ def index(request):
             book_category=category
         )
 
+    for book in books:
+        if book.book_genre:
+            genres = [g.strip() for g in book.book_genre.split("/")]
+
+            book.display_genre = " / ".join(genres[:3])
+
     return render(request, 'books/index.html', {
         'books': books,
         'total_books' : total_books,
@@ -67,6 +74,13 @@ def index(request):
         'dropped_books' : dropped_books
     })
 
+@login_required
+def logout_confirm(request):
+    return render(request, 'registration/logout_confirm.html')
+
+@login_required
+def logout_confirm_2(request):
+    return render(request, 'registration/logout_confirm_2.html')
 
 @login_required
 def book_create(request):
@@ -146,74 +160,102 @@ def book_delete(request, id):
         'book': book
     })
 
-@login_required
-def spotify_login(request):
-    scope = "user-read-currently-playing user-read-playback-state"
+def goodbye(request):
+    return render(request, 'books/registration/login.html')
 
-    auth_url = (
-        "https://accounts.spotify.com/authorize"
-        f"?client_id={settings.SPOTIFY_CLIENT_ID}"
-        f"&response_type=code"
-        f"&redirect_uri={settings.SPOTIFY_REDIRECT_URI}"
-        f"&scope={scope.replace(' ', '%20')}"
+@login_required
+def book_detail(request, id):
+    book = get_object_or_404(
+        Books,
+        id=id,
+        user = request.user
     )
 
-    return redirect(auth_url)
+    return render(request, 'books/book_detail.html', {
+        'book' : book
+    })
 
 @login_required
-def spotify_callback(request):
-    code = request.GET.get("code")
+def book_search(request):
 
-    if not code:
-        return JsonResponse({
-            "error": "Spotify authorization failed"
+    query = request.GET.get("q", "")
+
+    books = []
+
+    if query:
+        books = search_books(query)
+
+    return render(request, "books/search.html", {
+        "books": books,
+        "query": query,
+    })
+
+def book_api_detail(request, book_id):
+
+    book = get_book(book_id)
+
+    if not book:
+        return render(request, "books/book_not_found.html")
+
+    return render(request, "books/api_book_detail.html", {
+        "book": book
+    })
+
+def google_book_detail(request, book_id):
+
+    book = get_book(book_id)
+
+    if not book:
+        return render(request, "books/google_book_detail.html", {
+            "book": None
         })
 
-    client_credentials = (
-        f"{settings.SPOTIFY_CLIENT_ID}:"
-        f"{settings.SPOTIFY_CLIENT_SECRET}"
-    )
+    return render(request, "books/google_book_detail.html", {
+        "book": book
+    })
 
-    encoded_credentials = base64.b64encode(
-        client_credentials.encode()
-    ).decode()
+@login_required
+def add_google_book(request, book_id):
 
-    token_response = requests.post(
-        "https://accounts.spotify.com/api/token",
-        data={
-            "grant_type": "authorization_code",
-            "code": code,
-            "redirect_uri": settings.SPOTIFY_REDIRECT_URI,
-        },
-        headers={
-            "Authorization": f"Basic {encoded_credentials}",
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-    )
+    if request.method != "POST":
+        return redirect("book_search")
 
-    token_data = token_response.json()
+    book = get_book(book_id)
 
-    if "access_token" not in token_data:
-        return JsonResponse(token_data)
+    if not book:
+        return redirect("book_search")
 
-    access_token = token_data["access_token"]
-    refresh_token = token_data["refresh_token"]
-    expires_in = token_data["expires_in"]
+    info = book.get("volumeInfo", {})
 
-    expires_at = timezone.now() + timedelta(
-        seconds=expires_in
-    )
+    title = info.get("title", "Unknown title")
 
-    SpotifyToken.objects.update_or_create(
+    authors = info.get("authors", [])
+    author = ", ".join(authors)
+
+    categories = info.get("categories", [])
+    genre = ", ".join(categories)
+
+    description = info.get("description", "")
+
+    image_links = info.get("imageLinks", {})
+    cover = image_links.get("thumbnail", "")
+
+    identifiers = info.get("industryIdentifiers", [])
+
+    isbn = ""
+
+    if identifiers:
+        isbn = identifiers[0].get("identifier", "")
+
+    Books.objects.create(
         user=request.user,
-        defaults={
-            "access_token": access_token,
-            "refresh_token": refresh_token,
-            "expires_at": expires_at,
-        }
+        book_title=title,
+        book_author=author,
+        book_genre=genre,
+        book_cover=cover,
+        description=description,
+        isbn=isbn,
+        book_category="unread"
     )
 
     return redirect("index")
-
-def goodbye(request):
-    return render(request, 'books/registration/logged_out.html')

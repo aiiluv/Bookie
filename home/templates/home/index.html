@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav>
@@ -23,71 +25,105 @@
                 <li><a href="">More Bookie</a></li>
                 <li><a href="{% url 'index' %}">Mybookie</a></li>
                 <li><a href="">About</a></li>
-                <li id="nav-btn"><form action="{% url 'login'%}" method="post">
-                    {% csrf_token %}
-                    <button type="submit">
-                        Login :)
-                    </button>
-                </form></li>
+                <li id="nav-btn">
+                    <form action="{% url 'login'%}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">
+                            Login :)
+                        </button>
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>
 
     <main>
-        <!-- hero section -->
-        <div>
-            <img id="hero" src="{% static 'assets/images/hero.svg' %}">
-        </div>
+        <!-- ================= HERO ================= -->
+        <section class="hero">
 
-        <!-- Why bookie? -->
-        <section>
-            <div class="bg-2">
-                <img id="hero" src="{% static 'assets/images/hero.svg' %}">
-            </div>
+            <div class="hero-content">
 
-            <div class="bg-2">
-                <h2>Extremely cute bookie</h2>
-                <h1>Making you want to read books!</h1>
-                <p>i’m telling you, reading is so much fun.
-                    wether it’s novels, comics, self improvement, fiction,
-                    non-fiction, religi, assjhashajha</p>
-            </div>
-        </section>
+                <p class="hero-small">
+                    Where <i>Cutie </i> meet
+                </p>
 
-        <!-- Fav genre -->
-        <section>
-            <div>
-                <h2>What's your favorite genre?</h2>
-                <div class="genre">
-                    <button class="genre-btn">Action</button>
-                    <button class="genre-btn">Action</button>
-                    <button class="genre-btn">Action</button>
-                    <button class="genre-btn">Action</button>
+                <h1>Bookie</h1>
 
-                    <button class="genre-btn">Action</button>
-                    <button class="genre-btn">Action</button>
-                    <button class="genre-btn">Action</button>
-                    <button class="genre-btn">Action</button>
+                <div class="bookie-text">
+                    <span>Bookie</span>
+                    <span>Bookie</span>
+                    <span>Bookie</span>
                 </div>
+
             </div>
 
-            <div>
-                <img id="hero" src="{% static 'assets/images/hero.svg' %}">
-            </div>
         </section>
 
-        <!-- Rate this website! -->
-        <section class="feedback-section">
 
-            <h2>
-                How was MyBookie?
-            </h2>
+        <!-- ================= WHY BOOKIE ================= -->
+        <section class="why-section">
 
-            <p>
-                We'd love to hear what you think!
-            </p>
+            <div class="why-image">
+                <img src="{% static 'assets/images/bee-cat.png' %}" alt="">
+            </div>
+
+            <div class="why-content">
+
+                <h2>Extremely cute bookie</h2>
+
+                <h1>
+                    making you want to read
+                    moree books!
+                </h1>
+
+                <p>
+                    i'm telling you, reading is so much fun.
+                    whether it's novel, comic, self improvement,
+                    fiction, non-fiction, religi, assjhashajha
+                </p>
+
+            </div>
+
+        </section>
 
 
+        <!-- ================= FAVORITE GENRE ================= -->
+        <section class="genre-section">
+
+            <div class="genre-content">
+
+                <h2>
+                    What's your
+                    <span>favorite</span> genre?
+                </h2>
+
+                <div class="genre">
+
+                    <button class="genre-btn">Action</button>
+                    <button class="genre-btn">Thriller</button>
+
+                    <button class="genre-btn">Sci-fi</button>
+                    <button class="genre-btn">Fantasy</button>
+
+                    <button class="genre-btn">Mystery</button>
+                    <button class="genre-btn">SOL</button>
+
+                    <button class="genre-btn">Romance</button>
+                    <button class="genre-btn">Comedy</button>
+
+                </div>
+
+            </div>
+
+            <div class="genre-image">
+
+                <img src="{% static 'assets/images/bee-cat.png' %}" alt="Bookie">
+
+            </div>
+
+        </section>
+
+        <section>
             <form method="POST">
 
                 {% csrf_token %}
@@ -103,4 +139,5 @@
         </section>
     </main>
 </body>
+
 </html>
