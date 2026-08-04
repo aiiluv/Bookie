@@ -9,6 +9,7 @@ __pycache__/
 
 # Django
 db.sqlite3
+*.log
 
 # Environment variables
 .env
@@ -19,3 +20,9 @@ db.sqlite3
 # OS
 .DS_Store
 Thumbs.db
+
+# Media
+media/
+
+# Static
+staticfiles/
