@@ -10,7 +10,7 @@ A simple website developed using Vs code. This website has 2 features inside tha
 - Searching books : Users can search books
 - done
 
-##Why bookie?
+## Why bookie?
 - Interactive Logout (hmz)
 - Cute UI (Pink, cream, yellow, and green color palette)
 
