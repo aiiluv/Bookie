@@ -1,5 +1,5 @@
-##Bookie
-###Making you want to read more books!
+## Bookie
+### Making you want to read more books!
 
 ## About Bookie
 Bookie is a website made for my django lesson.
