@@ -1,36 +1,95 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - MyBookie</title>
+    <link rel="stylesheet" href="{% static 'books/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'books/nav.css'%}">
 
-    <title>Register</title>
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div id="grid-item">
+            <a href="{% url 'home' %}">
+                <img id="logo" src="{% static 'books/assets/images/bookie_logo.png' %}" alt="MyBookie Logo">
+            </a>
+        </div>
+        <div class="navbar-inline">
+            <ul class="nav">
+                <li><a href="{% url 'more_bookie'%}">More Bookie</a></li>
+                <li><a href="{% url 'index' %}">Mybookie</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li class="nav-btn">
+                    <form action="{% url 'login'%}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">
+                            Login :)
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <h1>Create Account</h1>
 
-    <form method="POST">
+    <!-- REGISTER-->
+    <main class="auth-page">
 
-        {% csrf_token %}
+        <div class="bg-2">
 
-        {{ form.as_p }}
 
-        <button type="submit">
-            Register
-        </button>
+            <!-- IMAGE -->
 
-    </form>
+            <div class="auth-image">
 
-    <p>
-        Already have an account?
+                <img
+                    src="{% static 'books/assets/images/love-cat.png' %}"
+                    alt="Bookie Cat"
+                >
 
-        <a href="{% url 'login' %}">
-            Login
-        </a>
-    </p>
+            </div>
+
+
+            <!-- REGISTER FORM -->
+
+            <div class="auth-form">
+
+                <h2>Create Account</h2>
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <label>Username:</label>
+                    {{ form.username }}
+
+                    <label>Password:</label>
+                    <p>
+                        Password must be at least 8 characters and not too common.
+                    </p>
+                    {{ form.password1 }}
+                
+
+                    <label>Confirm Password:</label>
+                    {{ form.password2 }}
+
+                    <button type="submit">
+                        Register
+                    </button>
+
+                </form>
+
+        </div>
+
+    </main>
 
 </body>
 

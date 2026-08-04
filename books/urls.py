@@ -4,8 +4,8 @@ from . import views
 urlpatterns = [
 
     path('', views.index, name='index'),
+    path('more-bookie/', views.more_bookie, name='more_bookie'),
     path('add/', views.book_create, name='book_create'),
-    path('search/', views.book_search, name='book_search'),
 
     # GOOGLE BOOKS
     path('search/', views.book_search, name='book_search'),

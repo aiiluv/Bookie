@@ -74,6 +74,28 @@ def index(request):
         'dropped_books' : dropped_books
     })
 
+def more_bookie(request):
+
+    query = request.GET.get("q", "")
+    genre = request.GET.get("genre", "")
+
+    search_results = []
+    recommended = []
+
+    if query:
+        search_results = search_books(query)
+
+    if genre:
+        recommended = search_books(genre)
+    else:
+        recommended = search_books("fantasy")
+
+    return render(request, "books/more_bookie.html", {
+        "query": query,
+        "search_results": search_results,
+        "recommended": recommended,
+    })
+
 @login_required
 def logout_confirm(request):
     return render(request, 'registration/logout_confirm.html')
@@ -188,17 +210,6 @@ def book_search(request):
     return render(request, "books/search.html", {
         "books": books,
         "query": query,
-    })
-
-def book_api_detail(request, book_id):
-
-    book = get_book(book_id)
-
-    if not book:
-        return render(request, "books/book_not_found.html")
-
-    return render(request, "books/api_book_detail.html", {
-        "book": book
     })
 
 def google_book_detail(request, book_id):

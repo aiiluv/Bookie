@@ -7,26 +7,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Book</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+    <link rel="stylesheet" href="{% static 'books/nav.css'%}">
 
+    <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav>
         <div id="grid-item">
-            <img id="logo" src="{% static 'books/assets/images/bookie_logo.png' %}" alt="MyBookie Logo">
+            <a href="{% url 'home' %}">
+                <img id="logo" src="{% static 'books/assets/images/bookie_logo.png' %}" alt="MyBookie Logo">
+            </a>
         </div>
         <div class="navbar-inline">
             <ul class="nav">
-                <li><a href="">More Bookie</a></li>
-                <li><a href="">Mybookie</a></li>
-                <li><a href="">About</a></li>
-                <li id="nav-btn">
+                <li><a href="{% url 'more_bookie'%}">More Bookie</a></li>
+                <li><a href="{% url 'index' %}">Mybookie</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li class="nav-btn">
                     <form action="{% url 'logout'%}" method="post">
                         {% csrf_token %}
                         <button type="submit">
@@ -38,16 +41,9 @@
         </div>
     </nav>
 
-
     <!-- Add Book -->
-
     <main class="add-book-page">
-
         <div class="add-book-box">
-
-            <h1>
-                Add a new book!
-            </h1>
 
             <p>
                 Tell me about the book you're reading :)
@@ -66,7 +62,7 @@
             </form>
 
             <a class="back-book-btn" href="{% url 'index' %}">
-                ← Back to MyBookie
+                Go Back
             </a>
 
         </div>

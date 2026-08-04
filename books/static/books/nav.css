@@ -1,0 +1,159 @@
+
+* {
+    font-family: "Comic Relief", sans-serif;
+}
+
+nav {
+    width: 100%;
+    height: 60px;
+
+    background-color: #f58bb2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+}
+
+#grid-item {
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    width: 155px;
+    height: auto;
+    display: block;
+}
+
+.nav {
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+
+    gap: 30px;
+}
+
+.nav li {
+    display: flex;
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.nav-btn{
+    border: none;
+
+    background-color: #d95789;
+
+    color: white;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    padding: 8px 30px;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background-color: #c94b7d;
+}
+
+button {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bolder;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+
+    nav {
+        height: auto;
+        min-height: 60px;
+
+        padding: 12px 20px;
+
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #logo {
+        width: 140px;
+    }
+
+    .nav {
+        gap: 18px;
+
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav a {
+        font-size: 14px;
+    }
+
+    .nav-btn {
+        padding: 7px 20px;
+        font-size: 14px;
+    }
+
+}
+
+
+/* =========================
+   PHONE
+========================= */
+
+@media (max-width: 500px) {
+
+    nav {
+        padding: 12px 15px;
+    }
+
+    #logo {
+        width: 125px;
+    }
+
+    .nav {
+        width: 100%;
+
+        gap: 10px 15px;
+
+        justify-content: center;
+    }
+
+    .nav li {
+        white-space: nowrap;
+    }
+
+    .nav a {
+        font-size: 12px;
+    }
+
+    .nav-btn {
+        padding: 6px 15px;
+        font-size: 12px;
+    }
+
+}

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookie about page</title>
     <link rel="stylesheet" href="{% static 'style.css'%}">
+    <link rel="stylesheet" href="{% static 'books/nav.css'%}">
 
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +14,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <!-- Navigation -->
+    <nav>
+        <div id="grid-item">
+            <a href="{% url 'home' %}">
+                <img id="logo" src="{% static 'books/assets/images/bookie_logo.png' %}" alt="MyBookie Logo">
+            </a>
+        </div>
+        <div class="navbar-inline">
+            <ul class="nav">
+                <li><a href="{% url 'more_bookie'%}">More Bookie</a></li>
+                <li><a href="{% url 'index' %}">Mybookie</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li class="nav-btn">
+                    <form action="{% url 'login'%}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">
+                            Login :)
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="about">
+        <!-- ================= WHY BOOKIE ================= -->
+        <section class="why-section">
+
+            <div class="why-image">
+                <img src="{% static 'assets/images/bee-cat.png' %}" alt="">
+            </div>
+
+            <div class="why-content">
+
+                <h1>ABOUT BOOKIE!</h1>
+
+                <h1>
+                    making you want to read
+                    moree books!
+                </h1>
+
+                <p>Bookie is a booklist website that i make using django.</p>
+                <p>This website was made for my django lesson</p>
+                <p>Done, baybay (hope you like bookie ^^)</p>
+
+            </div>
+
+        </section>
+    </main>
 </body>
 </html>

@@ -1,12 +1,12 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - MyBookie</title>
     <link rel="stylesheet" href="{% static 'books/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'books/nav.css'%}">
 
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,15 +19,23 @@
     <!-- Navigation -->
     <nav>
         <div id="grid-item">
-            <img id="logo" src="{% static 'books/assets/images/bookie_logo.png' %}" alt="MyBookie Logo">
+            <a href="{% url 'home' %}">
+                <img id="logo" src="{% static 'books/assets/images/bookie_logo.png' %}" alt="MyBookie Logo">
+            </a>
         </div>
         <div class="navbar-inline">
             <ul class="nav">
-                <ul class="nav">
-                    <li><a href="">More Bookie</a></li>
-                    <li><a href="">Mybookie</a></li>
-                    <li><a href="">About</a></li>
-                    <li id="nav-btn"><a href="{% url 'logout_confirm'%}">Logout :(</a></li>
+                <li><a href="{% url 'more_bookie'%}">More Bookie</a></li>
+                <li><a href="{% url 'index' %}">Mybookie</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li class="nav-btn">
+                    <form action="{% url 'logout'%}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">
+                            Logout :(
+                        </button>
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>
@@ -59,6 +67,10 @@
                     <button type="submit">
                         Login
                     </button>
+
+                    <a href="{% url 'register' %}">
+                        Don't have an account? Register here
+                    </a>
 
                 </form>
 

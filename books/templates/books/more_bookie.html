@@ -1,0 +1,327 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Bookie</title>
+    <link rel="stylesheet" href="{% static 'books/search.css' %}">
+    <link rel="stylesheet" href="{% static 'books/nav.css'%}">
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div id="grid-item">
+            <a href="{% url 'home' %}">
+                <img id="logo" src="{% static 'books/assets/images/bookie_logo.png' %}" alt="MyBookie Logo">
+            </a>
+        </div>
+        <div class="navbar-inline">
+            <ul class="nav">
+                <li><a href="{% url 'more_bookie'%}">More Bookie</a></li>
+                <li><a href="{% url 'index' %}">Mybookie</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li class="nav-btn">
+                    <form action="{% url 'logout'%}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">
+                            Logout :(
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="more-bookie-page">
+
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <div class="more-header">
+
+            <h1>
+                Discover Books
+            </h1>
+
+            <p>
+                Find something new to read!
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             SEARCH
+        ========================= -->
+
+        <form
+            method="GET"
+            action="{% url 'more_bookie' %}"
+            class="search-form"
+        >
+
+            <input
+                type="text"
+                name="q"
+                value="{{ query }}"
+                placeholder="Search for a book..."
+            >
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+
+        <!-- =========================
+             SEARCH RESULTS
+        ========================= -->
+
+        {% if query %}
+
+        <section class="book-section search-section">
+
+            <div class="section-title">
+
+                <h2>
+                    Results for "{{ query }}"
+                </h2>
+
+            </div>
+
+
+            <div class="book-grid">
+
+                {% for book in search_results %}
+
+                <div class="book-card">
+
+
+                    <!-- COVER -->
+
+                    <div class="book-cover-container">
+
+                        {% if book.volumeInfo.imageLinks.thumbnail %}
+
+                        <img
+                            src="{{ book.volumeInfo.imageLinks.thumbnail }}"
+                            alt="{{ book.volumeInfo.title }}"
+                            class="book-cover"
+                        >
+
+                        {% else %}
+
+                        <div class="cover-placeholder">
+                            📖
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- INFO -->
+
+                    <div class="book-info">
+
+                        <h3>
+                            {{ book.volumeInfo.title }}
+                        </h3>
+
+
+                        <p class="book-author">
+
+                            {% if book.volumeInfo.authors %}
+
+                                {{ book.volumeInfo.authors|join:", " }}
+
+                            {% else %}
+
+                                Unknown author
+
+                            {% endif %}
+
+                        </p>
+
+
+                        <a
+                            href="{% url 'google_book_detail' book.id %}"
+                            class="view-book"
+                        >
+                            View Book
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% empty %}
+
+                <p class="empty-message">
+                    No books found :(
+                </p>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+
+        <!-- =========================
+             DISCOVER
+        ========================= -->
+
+        <section class="book-section discover-section">
+
+
+            <div class="section-title">
+
+                <h2>
+                    {% if query %}
+                        More Books You Might Like
+                    {% else %}
+                        Discover Books
+                    {% endif %}
+                </h2>
+
+                <p>
+                    Explore books and find your next favorite!
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 GENRE
+            ========================= -->
+
+            <div class="genre-buttons">
+
+                <a href="?genre=fantasy">
+                    Fantasy
+                </a>
+
+                <a href="?genre=mystery">
+                    Mystery
+                </a>
+
+                <a href="?genre=romance">
+                    Romance
+                </a>
+
+                <a href="?genre=science fiction">
+                    Sci-Fi
+                </a>
+
+            </div>
+
+
+            <!-- =========================
+                 BOOK GRID
+            ========================= -->
+
+            <div class="book-grid">
+
+                {% for book in recommended %}
+
+                <div class="book-card">
+
+
+                    <!-- COVER -->
+
+                    <div class="book-cover-container">
+
+                        {% if book.volumeInfo.imageLinks.thumbnail %}
+
+                        <img
+                            src="{{ book.volumeInfo.imageLinks.thumbnail }}"
+                            alt="{{ book.volumeInfo.title }}"
+                            class="book-cover"
+                        >
+
+                        {% else %}
+
+                        <div class="cover-placeholder">
+                            📖
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- INFO -->
+
+                    <div class="book-info">
+
+                        <h3>
+                            {{ book.volumeInfo.title }}
+                        </h3>
+
+
+                        <p class="book-author">
+
+                            {% if book.volumeInfo.authors %}
+
+                                {{ book.volumeInfo.authors|join:", " }}
+
+                            {% else %}
+
+                                Unknown author
+
+                            {% endif %}
+
+                        </p>
+
+
+                        <a
+                            href="{% url 'google_book_detail' book.id %}"
+                            class="view-book"
+                        >
+                            View Book
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% empty %}
+
+                <p class="empty-message">
+                    No recommendations available.
+                </p>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</body>
+
+</html>
